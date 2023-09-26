@@ -1,4 +1,4 @@
-﻿
+//訂正済み﻿
 namespace rensyu
 {
     public class Program
