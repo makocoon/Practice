@@ -23,8 +23,8 @@
 
             //// ↓のロジック何してるのかわからず。ほかの人が見た時にパッとわかるろじっくにしましょう。
 
-            //ここから最小値から最大値まで10刻みで、数字を表示する
-            for (int i = minTemp; i <= maxTemp;)
+            //ここから最小値から10刻みで数字を表示（最大値を含むように）
+            for (int i = minTemp; i < maxTemp+10;)
             {
                 Console.Write(" "+i +"  ");
                 i += 10;
@@ -33,11 +33,10 @@
             //// ↓なんでしょう？改行だけでいいならスペースいらないのではないでしょうか？
             Console.WriteLine();
 
-            for (int i = 0; i <= (maxTemp - minTemp) / 10; i++)
+            for (int i = 0; i <= (maxTemp - minTemp) / 10 + 1; i++)
             {
                 Console.Write("--|--");
             }
-            //Console.Write("-|-");
         }
     }
 }
