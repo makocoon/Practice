@@ -10,23 +10,19 @@ namespace rensyu
 
             Console.WriteLine("数字を入力してください");
 
-            //// なぜint.Parseの戻り値をdouble型に受けている？
             //// intにパースできない入力の時落ちませんか？
+            //// →落ちないとは思いますが、エラー処理できてないですね。ループ処理の中で落ちません？
             int value = int.Parse(Console.ReadLine());
 
-            //// newValueはよくないですね。結果が入るのであれば、resultValueとかのほうがよいです。
             //// 全体的に型推論使ったほうがよいです。
             var resultValue = new List<string>();
 
             for (int i = 0; ; i++)
             {
-                //// 英語にしましょう。（amari, sho)
                 int remainder = (int)(value % 16);
                 resultValue.Add(remainder.ToString("X"));
                 int quotient = (int)(value / 16);
 
-                //// if、if else節を一行でかくのよくないです。
-                ///　改行しましょう
                 if (quotient >= 16) 
                 {
                     value = quotient; 
@@ -43,11 +39,8 @@ namespace rensyu
             }
             //// 個人的な意見かもしれませんがローカル変数よりメンバ関数にしましょう。
             //→（質問）ローカル"関数"の間違いでしょうか？
-
-            ////　これは練習なのでいいかもしれませんが、ToString("X")使ったほうがよいです。
-            ////　value.ToString("X")でint型の数値を16進数文字列に変換できます。
-            //→ 上で実装しました。（↑）
-
+            //// →すみません。そうです。
+            
             resultValue.Reverse();
 
             Console.Write("入力した数字を16進数になおすと");
@@ -57,6 +50,7 @@ namespace rensyu
             }
             Console.Write("です。");
         }
+            ////コメントアウトしたコードはpushしないでください。
             //string ToHexa(int value)
             //{
                 //string? hexaValue = null;

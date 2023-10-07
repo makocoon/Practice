@@ -9,18 +9,26 @@ namespace rensyu
     {
         static void Main(string[] args)
         {
+            //// このインスタンスは...?
             var rensyu = new rensyu();
 
             Console.WriteLine("整数を入力してください。");
-            //// 命名規則見直しましょう。
             //// Parse失敗したらExceptionでますね。
             double.TryParse(Console.ReadLine(), out double value);
 
             Console.WriteLine(rensyu.judgeValue(value));
         }
-        //// こっから下のロジックは関数に抜いたほうが読みやすいですね。
+
         private static string judgeValue(double value)
         {
+            //// ↓は可読性がひくいですね。
+            ////　簡潔に書いて,インラインにするのが一番よいですね。
+            ///　（若干前回指摘が微妙でした。すみません。）
+
+            //// コード例
+            // if( value == 0) return "Zero";
+            // return (value > 0) ? return "Positive" : $"Nagative. absolute value is {Math.Abs(changedValue)}"; 
+
             if (value == 0) //文字列を入力したときも"ゼロ"になってしまう
             {
                 return "ゼロ";
