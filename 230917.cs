@@ -1,84 +1,58 @@
-//訂正済み﻿
+//10月1日PR分訂正済み﻿
+
+//問題
+//入力した10進数を16進数に変換する
+
+using System.Runtime.CompilerServices;
+
 namespace rensyu
 {
     public class Program
     {
+        private static List<string> _outputValue = new List<string>();
         static void Main(string[] args)
         {
-            //問題
-            //入力した10進数を16進数に変換する
-
             Console.WriteLine("数字を入力してください");
+            //// 全体的に型推論使ったほうがよいです。
 
             //// intにパースできない入力の時落ちませんか？
             //// →落ちないとは思いますが、エラー処理できてないですね。ループ処理の中で落ちません？
-            int value = int.Parse(Console.ReadLine());
-
-            //// 全体的に型推論使ったほうがよいです。
-            var resultValue = new List<string>();
-
-            for (int i = 0; ; i++)
+            //↓で実装しました。
+            if (int.TryParse(Console.ReadLine(), out int inputValue))
             {
-                int remainder = (int)(value % 16);
-                resultValue.Add(remainder.ToString("X"));
-                int quotient = (int)(value / 16);
-
-                if (quotient >= 16) 
-                {
-                    value = quotient; 
-                }
-                else if (quotient == 0) 
-                {
-                    break; 
-                }
-                else
-                {
-                    resultValue.Add(quotient.ToString("X"));
-                    break;
-                }
+                ChangeValue(inputValue);
+                DisplayResult();
             }
-            //// 個人的な意見かもしれませんがローカル変数よりメンバ関数にしましょう。
-            //→（質問）ローカル"関数"の間違いでしょうか？
-            //// →すみません。そうです。
-            
-            resultValue.Reverse();
+            else
+            {
+                Console.WriteLine("入力が正しくありません。");
+            }
+        }
+        //// 個人的な意見かもしれませんがローカル関数よりメンバ関数にしましょう。
+        //↓すみません、メンバ関数の命名規約曖昧なので、火曜日確認します。
+        private static void ChangeValue(int value)
+        {
+            if (value == 0)
+            {
+                _outputValue.Add(value.ToString("X"));
+            }
+            while (value > 0)
+            {
+                var remainder = value % 16;
+                _outputValue.Add(remainder.ToString("X"));
+                value /= 16;
+            }
+        }
+        private static void DisplayResult()
+        {
+            _outputValue.Reverse();
 
             Console.Write("入力した数字を16進数になおすと");
-            foreach (var item in resultValue)
+            foreach (var item in _outputValue)
             {
                 Console.Write(item);
             }
             Console.Write("です。");
         }
-            ////コメントアウトしたコードはpushしないでください。
-            //string ToHexa(int value)
-            //{
-                //string? hexaValue = null;
-                //switch (value)
-                //{
-                //    case 10:
-                //        hexaValue = "A";
-                //        break;
-                //    case 11:
-                //        hexaValue = "B";
-                //        break;
-                //    case 12:
-                //        hexaValue = "C";
-                //        break;
-                //    case 13:
-                //        hexaValue = "D";
-                //        break;
-                //    case 14:
-                //        hexaValue = "E";
-                //        break;
-                //    case 15:
-                //        hexaValue = "F";
-                //        break;
-                //    default:
-                //        hexaValue = value.ToString();
-                //        break;
-                //}
-                //return hexaValue;
-            //}
     }
 }

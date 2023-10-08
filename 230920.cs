@@ -1,4 +1,6 @@
-﻿//問題
+﻿//10月1日PR分訂正済み﻿
+
+//問題
 //入力された整数が正か負かゼロかを分類するプログラムを作成せよ。
 //入力が負の場合には絶対値を表示せよ。
 using System.Linq.Expressions;
@@ -10,13 +12,20 @@ namespace rensyu
         static void Main(string[] args)
         {
             //// このインスタンスは...?
-            var rensyu = new rensyu();
+            //すみません。謎なことしていました。
 
             Console.WriteLine("整数を入力してください。");
             //// Parse失敗したらExceptionでますね。
-            double.TryParse(Console.ReadLine(), out double value);
-
-            Console.WriteLine(rensyu.judgeValue(value));
+            //↓のように実装しました。
+            var uncheckedValue = Console.ReadLine();
+            if (double.TryParse(uncheckedValue, out double checkedValue))
+            {
+                Console.WriteLine(judgeValue(checkedValue));
+            }
+            else if (uncheckedValue is string)
+            {
+                Console.WriteLine("入力が正しくありません。");
+            }
         }
 
         private static string judgeValue(double value)
@@ -28,24 +37,8 @@ namespace rensyu
             //// コード例
             // if( value == 0) return "Zero";
             // return (value > 0) ? return "Positive" : $"Nagative. absolute value is {Math.Abs(changedValue)}"; 
-
-            if (value == 0) //文字列を入力したときも"ゼロ"になってしまう
-            {
-                return "ゼロ";
-            }
-            else if (value > 0)
-            {
-                return "正";
-            }
-            else
-            {
-                //// Math.Abs使いましょう。
-                double changedValue = Math.Abs(value);
-
-                //// 文字列補間使いましょう。
-                //// Console.WriteLine($"負。絶対値は{_changedValue}です。);
-                return $"負。絶対値は{changedValue}です。";
-            }
+            if (value == 0) return "セロ";
+            return (value > 0) ? "正" : $"負。絶対値は{Math.Abs(value)}です。";
         }
     }
 }
