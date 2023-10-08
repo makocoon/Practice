@@ -22,7 +22,7 @@ namespace rensyu
             {
                 Console.WriteLine(judgeValue(checkedValue));
             }
-            else if (uncheckedValue is string)
+            else if(uncheckedValue is string)
             {
                 Console.WriteLine("入力が正しくありません。");
             }
@@ -38,7 +38,8 @@ namespace rensyu
             // if( value == 0) return "Zero";
             // return (value > 0) ? return "Positive" : $"Nagative. absolute value is {Math.Abs(changedValue)}"; 
             if (value == 0) return "セロ";
-            return (value > 0) ? "正" : $"負。絶対値は{Math.Abs(value)}です。";
+            return (value > 0) ? "正": $"負。絶対値は{Math.Abs(value)}です。";
+
         }
     }
 }

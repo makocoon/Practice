@@ -1,4 +1,4 @@
-//10月1日PR分訂正済み﻿
+﻿//10月1日PR分訂正済み﻿
 
 //問題
 //入力した10進数を16進数に変換する
@@ -32,7 +32,7 @@ namespace rensyu
         //↓すみません、メンバ関数の命名規約曖昧なので、火曜日確認します。
         private static void ChangeValue(int value)
         {
-            if (value == 0)
+            if(value == 0)
             {
                 _outputValue.Add(value.ToString("X"));
             }
