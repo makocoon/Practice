@@ -39,6 +39,7 @@ namespace rensyu
             // return (value > 0) ? return "Positive" : $"Nagative. absolute value is {Math.Abs(changedValue)}"; 
             if (value == 0) return "セロ";
             return (value > 0) ? "正": $"負。絶対値は{Math.Abs(value)}です。";
+
         }
     }
 }
