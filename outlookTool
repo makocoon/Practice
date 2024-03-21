@@ -1,0 +1,36 @@
+Sub SendSelectionByEmail()
+    Dim OutlookApp As Object
+    Dim MailItem As Object
+    Dim rng As Range
+    Dim mailBody As String
+    Dim row As Long
+    Dim col As Long
+    
+    ' Outlook アプリケーションを作成
+    Set OutlookApp = CreateObject("Outlook.Application")
+    ' 新しいメールアイテムを作成
+    Set MailItem = OutlookApp.CreateItem(0)
+    
+    ' 選択範囲を取得
+    Set rng = Selection
+    
+    ' 選択範囲の値をメールの本文に追加
+    mailBody = "選択範囲の内容は以下の通りです：" & vbCrLf & vbCrLf
+    
+    ' 行ごとにループ
+    For row = 1 To rng.Rows.Count
+        ' 列ごとにループ
+        For col = 1 To rng.Columns.Count
+            ' セルの値をメールの本文に追加
+            mailBody = mailBody & rng.Cells(row, col).Value & vbTab
+        Next col
+        ' 行末に改行を追加
+        mailBody = mailBody & vbCrLf
+    Next row
+    
+    ' メールの本文を設定
+    MailItem.Body = mailBody
+    
+    ' メールを表示
+    MailItem.Display
+End Sub
